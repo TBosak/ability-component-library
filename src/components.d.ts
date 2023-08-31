@@ -6,56 +6,55 @@
  */
 import { HTMLStencilElement, JSXBase } from "@stencil/core/internal";
 export namespace Components {
-    interface MyComponent {
-        /**
-          * The first name
-         */
-        "first": string;
-        /**
-          * The last name
-         */
-        "last": string;
-        /**
-          * The middle name
-         */
-        "middle": string;
+    interface FReader {
+        "controls": string[];
+        "focused": boolean;
+        "speakable": boolean;
+    }
+    interface VInput {
+        "placeholder": string;
+        "type": string;
     }
 }
 declare global {
-    interface HTMLMyComponentElement extends Components.MyComponent, HTMLStencilElement {
+    interface HTMLFReaderElement extends Components.FReader, HTMLStencilElement {
     }
-    var HTMLMyComponentElement: {
-        prototype: HTMLMyComponentElement;
-        new (): HTMLMyComponentElement;
+    var HTMLFReaderElement: {
+        prototype: HTMLFReaderElement;
+        new (): HTMLFReaderElement;
+    };
+    interface HTMLVInputElement extends Components.VInput, HTMLStencilElement {
+    }
+    var HTMLVInputElement: {
+        prototype: HTMLVInputElement;
+        new (): HTMLVInputElement;
     };
     interface HTMLElementTagNameMap {
-        "my-component": HTMLMyComponentElement;
+        "f-reader": HTMLFReaderElement;
+        "v-input": HTMLVInputElement;
     }
 }
 declare namespace LocalJSX {
-    interface MyComponent {
-        /**
-          * The first name
-         */
-        "first"?: string;
-        /**
-          * The last name
-         */
-        "last"?: string;
-        /**
-          * The middle name
-         */
-        "middle"?: string;
+    interface FReader {
+        "controls"?: string[];
+        "focused"?: boolean;
+        "speakable"?: boolean;
+    }
+    interface VInput {
+        "placeholder"?: string;
+        "type"?: string;
     }
     interface IntrinsicElements {
-        "my-component": MyComponent;
+        "f-reader": FReader;
+        "v-input": VInput;
     }
 }
 export { LocalJSX as JSX };
 declare module "@stencil/core" {
     export namespace JSX {
         interface IntrinsicElements {
-            "my-component": LocalJSX.MyComponent & JSXBase.HTMLAttributes<HTMLMyComponentElement>;
+            "f-reader": LocalJSX.FReader & JSXBase.HTMLAttributes<HTMLFReaderElement>;
+            "v-input": LocalJSX.VInput & JSXBase.HTMLAttributes<HTMLVInputElement>;
         }
     }
 }
