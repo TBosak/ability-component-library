@@ -11,6 +11,9 @@ export namespace Components {
         "focused": boolean;
         "speakable": boolean;
     }
+    interface TWriter {
+        "lines": (string[] | string);
+    }
     interface VInput {
         "placeholder": string;
         "type": string;
@@ -23,6 +26,12 @@ declare global {
         prototype: HTMLFReaderElement;
         new (): HTMLFReaderElement;
     };
+    interface HTMLTWriterElement extends Components.TWriter, HTMLStencilElement {
+    }
+    var HTMLTWriterElement: {
+        prototype: HTMLTWriterElement;
+        new (): HTMLTWriterElement;
+    };
     interface HTMLVInputElement extends Components.VInput, HTMLStencilElement {
     }
     var HTMLVInputElement: {
@@ -31,6 +40,7 @@ declare global {
     };
     interface HTMLElementTagNameMap {
         "f-reader": HTMLFReaderElement;
+        "t-writer": HTMLTWriterElement;
         "v-input": HTMLVInputElement;
     }
 }
@@ -40,12 +50,16 @@ declare namespace LocalJSX {
         "focused"?: boolean;
         "speakable"?: boolean;
     }
+    interface TWriter {
+        "lines"?: (string[] | string);
+    }
     interface VInput {
         "placeholder"?: string;
         "type"?: string;
     }
     interface IntrinsicElements {
         "f-reader": FReader;
+        "t-writer": TWriter;
         "v-input": VInput;
     }
 }
@@ -54,6 +68,7 @@ declare module "@stencil/core" {
     export namespace JSX {
         interface IntrinsicElements {
             "f-reader": LocalJSX.FReader & JSXBase.HTMLAttributes<HTMLFReaderElement>;
+            "t-writer": LocalJSX.TWriter & JSXBase.HTMLAttributes<HTMLTWriterElement>;
             "v-input": LocalJSX.VInput & JSXBase.HTMLAttributes<HTMLVInputElement>;
         }
     }
